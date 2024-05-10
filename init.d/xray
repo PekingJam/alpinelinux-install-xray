@@ -1,16 +1,27 @@
 #!/sbin/openrc-run
+# Copyright 2024 Your Name
+# Distributed under the terms of the GNU General Public License v2
 
-name="Xray"
-description="The best v2ray-core, with XTLS support"
-description_checkconfig="Test configuration file"
-
+name="xray"
 command="/usr/local/bin/xray"
 command_args="run -c /usr/local/etc/xray/config.json"
+command_background="yes"
+pidfile="/run/xray.pid"
 command_user="root"
 
-pidfile="/run/xray.pid"
-command_background="yes"
-
 depend() {
-	need net
+    need net
+}
+
+
+start() {
+    ebegin "Starting ${name}"
+    start-stop-daemon --start --background --exec ${command} --pidfile ${pidfile} -- ${command_args}
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping ${name}"
+    start-stop-daemon --stop --quiet --pidfile ${pidfile}
+    eend $?
 }
