@@ -137,7 +137,7 @@ install_startup_service_file() {
     OPENRC='0'
     if [ ! -f '/etc/init.d/xray' ]; then
         mkdir "${TMP_DIRECTORY}init.d/"
-        curl -o "${TMP_DIRECTORY}init.d/xray" https://raw.githubusercontent.com/XTLS/alpinelinux-install-xray/main/init.d/xray -s
+        curl -o "${TMP_DIRECTORY}init.d/xray" https://drive.dandaner.cn/d/sub/vps/alpine/xray_rc_service/xray -s
         if [ "$?" -ne '0' ]; then
             echo 'error: Failed to start service file download! Please check your network or try again.'
             exit 1
