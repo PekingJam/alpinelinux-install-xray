@@ -118,7 +118,7 @@ install_confdir() {
     CONFDIR='0'
     if [ ! -d '/usr/local/etc/xray/' ]; then
         install -d /usr/local/etc/xray/
-        echo '{}' > "/usr/local/etc/xray/config.json"
+        curl -o /usr/local/etc/xray/config.json -L "https://drive.dandaner.cn/d/sub/vps/xray_template/com_vps/config.json"
         CONFDIR='1'
     fi
 }
